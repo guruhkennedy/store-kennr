@@ -1,0 +1,46 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kennresearch | <%= title || "Shop" %></title>
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<header class="bg-white shadow p-4 mb-6">
+    <div class="max-w-screen-xl mx-auto flex items-center justify-between">
+       <!-- Logo -->
+        <a href="/" class="flex items-center">
+            <img src="/images/logo.png" alt="Kennresearch Logo" class="w-32 h-auto md:w-29 lg:w-30">
+        </a>
+
+        <!-- Hamburger Button (Mobile) -->
+        <button id="menu-toggle" class="block md:hidden text-[#003087] text-3xl focus:outline-none" aria-label="Toggle Menu">
+            ☰
+        </button>
+
+        <!-- Navbar (Desktop) -->
+        <nav class="hidden md:flex gap-4">
+            <a href="/" class="text-lg text-[#003087]">Home</a>
+            <a href="/terms" class="text-lg text-[#003087]">Ketentuan</a>
+            <a href="/contact" class="text-lg text-[#003087]">Kontak</a>
+        </nav>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg p-4 mt-2">
+        <a href="/" class="block text-lg text-[#003087] mb-2">Home</a>
+        <a href="/terms" class="block text-lg text-[#003087] mb-2">Ketentuan</a>
+        <a href="/contact" class="block text-lg text-[#003087]">Kontak</a>
+    </div>
+</header>
+
+<script>
+    // Toggle Mobile Menu
+    const menuToggle = document.getElementById("menu-toggle");
+    const mobileMenu = document.getElementById("mobile-menu");
+
+    menuToggle.addEventListener("click", () => {
+        mobileMenu.classList.toggle("hidden");
+    });
+</script>
+

@@ -1,0 +1,88 @@
+<%- include('partials/header') %>
+
+<div class="max-w-screen-xl mx-auto p-6">
+    <!-- Header -->
+    <div class="flex justify-between items-center mb-6">
+        <h1 class="text-3xl font-bold text-[#003087]">Dashboard</h1>
+        <a href="/logout" class="bg-[#003087] text-white rounded-md py-2 px-4">Logout</a>
+    </div>
+
+    <!-- Product Table -->
+    <table class="w-full mb-6 border">
+        <thead>
+            <tr class="bg-[#003087] text-white">
+                <th class="py-2 px-4">Product Name</th>
+                <th class="py-2 px-4">Brand</th>
+                <th class="py-2 px-4">Description</th>
+                <th class="py-2 px-4">Price</th>
+                <th class="py-2 px-4">Stock</th>
+                <th class="py-2 px-4">Image</th>
+                <th class="py-2 px-4">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+           <% products.forEach(product => { %>
+    <tr class="border-b">
+        <td class="py-2 px-4"><%= product.name %></td>
+        <td class="py-2 px-4"><%= product.brand %></td>
+        <td class="py-2 px-4"><%= product.description %></td>
+        <td class="py-2 px-4">Rp <%= product.price.toLocaleString('id-ID') %></td>
+         <td class="py-2 px-4"><%= product.stock %></td>
+        <td class="py-2 px-4"><a href="<%= product.image_url %>" target="_blank">View Image</a></td>
+        <td class="py-2 px-4">
+            <a href="#" onclick="editProduct('<%= product._id %>', '<%= product.name %>', '<%= product.brand %>', '<%= product.description %>', '<%= product.price %>', '<%= product.stock %>', '<%= product.image_url %>')" class="text-blue-600 mr-2">Edit</a>
+            <a href="/admin/products/delete/<%= product._id %>" class="text-red-600" onclick="return confirm('Are you sure you want to delete this product?')">Delete</a>
+        </td>
+    </tr>
+<% }) %>
+        </tbody>
+    </table>
+
+    <!-- Add Product Button -->
+    <button onclick="openAddProductModal()" class="bg-[#003087] text-white rounded-md py-2 px-4 mb-6">Add Product</button>
+
+    <!-- Modal for Add/Edit Product -->
+    <div id="productModal" class="fixed inset-0 bg-black/70 flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-lg shadow-lg p-6 max-w-md w-full">
+            <h2 id="modalTitle" class="text-xl font-bold mb-4">Add Product</h2>
+            <form id="productForm" method="POST" enctype="multipart/form-data">
+    <input type="text" name="name" placeholder="Product Name" required class="w-full mb-4 border px-3 py-2 rounded-md">
+    <input type="text" name="brand" placeholder="Brand" required class="w-full mb-4 border px-3 py-2 rounded-md">
+    <textarea name="description" placeholder="Description" required class="w-full mb-4 border px-3 py-2 rounded-md"></textarea>
+    <input type="number" name="price" placeholder="Price" required class="w-full mb-4 border px-3 py-2 rounded-md">
+    <input type="number" name="stock" placeholder="Stock" required class="w-full mb-4 border px-3 py-2 rounded-md">
+    <input type="file" name="image" accept="image/*" class="w-full mb-4 border px-3 py-2 rounded-md">
+    <button type="submit" class="bg-[#003087] text-white rounded-md py-2 px-4 w-full">Save</button>
+</form>
+            <button onclick="closeModal()" class="text-red-600 mt-4 w-full">Cancel</button>
+        </div>
+    </div>
+</div>
+
+<script>
+function openAddProductModal() {
+    const form = document.getElementById("productForm");
+    form.action = "/admin/products";
+    form.reset();
+    document.getElementById("modalTitle").innerText = "Add Product";
+    document.getElementById("productModal").classList.remove("hidden");
+}
+
+function editProduct(id, name, brand, description, price, stock, imageUrl) {
+    const form = document.getElementById("productForm");
+    form.action = `/admin/products/edit/${id}`;
+    form.elements["name"].value = name;
+    form.elements["brand"].value = brand;
+    form.elements["description"].value = description;
+    form.elements["price"].value = price;
+    form.elements["stock"].value = stock;
+    document.getElementById("modalTitle").innerText = "Edit Product";
+    document.getElementById("productModal").classList.remove("hidden");
+}
+
+function closeModal() {
+    document.getElementById("productModal").classList.add("hidden");
+}
+</script>
+
+<%- include('partials/footer') %>

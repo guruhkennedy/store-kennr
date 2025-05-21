@@ -1,0 +1,18 @@
+<%- include('partials/header') %>
+
+<div class="max-w-screen-xl mx-auto p-6">
+    <h1 class="text-3xl font-bold text-[#003087] mb-4">Kontak Kami</h1>
+    <p class="mb-4">Silakan hubungi kami melalui form di bawah ini atau melalui kontak berikut:</p>
+    <ul class="mb-6">
+        <li><strong>Email:</strong> admin@gmail.com</li>
+        <li><strong>WhatsApp:</strong> +62 821-000-000</li>
+    </ul>
+    <form action="/contact" method="POST">
+        <input type="text" name="name" placeholder="Nama Anda" required class="w-full mb-4 border px-3 py-2 rounded-md">
+        <input type="email" name="email" placeholder="Email Anda" required class="w-full mb-4 border px-3 py-2 rounded-md">
+        <textarea name="message" placeholder="Pesan Anda" required class="w-full mb-4 border px-3 py-2 rounded-md"></textarea>
+        <button type="submit" class="bg-[#003087] text-white rounded-md py-2 px-4 w-full">Kirim Pesan</button>
+    </form>
+</div>
+
+<%- include('partials/footer') %>
