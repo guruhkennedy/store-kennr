@@ -1,4 +1,3 @@
-// routes/adminRoutes.js
 const express = require("express");
 const Admin = require("../models/Admin");
 const Product = require("../models/Product");
@@ -21,11 +20,18 @@ router.post("/login", async (req, res) => {
         const admin = await Admin.findOne({ username });
         
         if (!admin || !(await admin.comparePassword(password))) {
-            return res.render("login", { error: "Invalid username or password" });
+            return res.render("login", { 
+                title: "Admin Login", 
+                error: "Invalid username or password" 
+            });
         }
 
         // Generate Token
-        const token = jwt.sign({ id: admin._id }, process.env.JWT_SECRET, { expiresIn: "1h" });
+        const token = jwt.sign(
+            { id: admin._id },
+            process.env.JWT_SECRET,
+            { expiresIn: "1h" }
+        );
         res.cookie("authToken", token, { httpOnly: true, secure: process.env.NODE_ENV === "production" });
         res.redirect("/admin/dashboard");
     } catch (error) {
@@ -33,6 +39,7 @@ router.post("/login", async (req, res) => {
     }
 });
 
+// Admin Dashboard (Protected)
 router.get("/admin/dashboard", authenticate, async (req, res) => {
     try {
         const products = await Product.find().sort({ name: 1 });
@@ -45,9 +52,19 @@ router.get("/admin/dashboard", authenticate, async (req, res) => {
 // Add New Product
 router.post("/admin/products", authenticate, upload.single("image"), async (req, res) => {
     try {
-        const { name, brand, description, price, stock } = req.body;
+        const { name, brand, description, price, discountPrice, stock } = req.body;
         const image_url = `/images/${req.file.filename}`;
-        const product = new Product({ name, brand, description, price, stock, image_url });
+
+        const product = new Product({
+            name,
+            brand,
+            description,
+            price,
+            discountPrice: discountPrice || null, // biar optional
+            stock,
+            image_url
+        });
+
         await product.save();
         res.redirect("/admin/dashboard");
     } catch (error) {
@@ -58,10 +75,17 @@ router.post("/admin/products", authenticate, upload.single("image"), async (req,
 // Edit Product
 router.post("/admin/products/edit/:id", authenticate, upload.single("image"), async (req, res) => {
     try {
-        const { name, brand, description, price, stock } = req.body;
-        const updateData = { name, brand, description, price, stock };
+        const { name, brand, description, price, discountPrice, stock } = req.body;
 
-        // Update image if new file uploaded
+        const updateData = {
+            name,
+            brand,
+            description,
+            price,
+            discountPrice: discountPrice || null,
+            stock
+        };
+
         if (req.file) {
             updateData.image_url = `/images/${req.file.filename}`;
         }
