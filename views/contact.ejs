@@ -1,17 +1,23 @@
 <%- include('partials/header') %>
 
-<div class="max-w-screen-xl mx-auto p-6">
-    <h1 class="text-3xl font-bold text-[#003087] mb-4">Kontak Kami</h1>
-    <p class="mb-4">Silakan hubungi kami melalui form di bawah ini atau melalui kontak berikut:</p>
-    <ul class="mb-6">
-        <li><strong>Email:</strong> admin@gmail.com</li>
-        <li><strong>WhatsApp:</strong> +62 821-000-000</li>
+<div class="max-w-screen-xl mx-auto p-6 border-4 border-black shadow-[8px_8px_0_0_black] bg-white rounded-lg">
+    <h1 class="text-4xl font-extrabold text-black mb-6 border-b-4 border-black pb-2 text-center">
+        Kontak Kami
+    </h1>
+    <p class="mb-4 text-base font-extrabold text-gray-800">
+        Silakan hubungi kami melalui form di bawah ini atau melalui kontak berikut:
+    </p>
+    <ul class="mb-6 text-base font-extrabold text-gray-800">
+        <li><strong>Email:</strong> guruh@kennresearch.com</li>
+        <li><strong>WhatsApp:</strong> +62 851-5674-1941</li>
     </ul>
-    <form action="/contact" method="POST">
-        <input type="text" name="name" placeholder="Nama Anda" required class="w-full mb-4 border px-3 py-2 rounded-md">
-        <input type="email" name="email" placeholder="Email Anda" required class="w-full mb-4 border px-3 py-2 rounded-md">
-        <textarea name="message" placeholder="Pesan Anda" required class="w-full mb-4 border px-3 py-2 rounded-md"></textarea>
-        <button type="submit" class="bg-[#003087] text-white rounded-md py-2 px-4 w-full">Kirim Pesan</button>
+    <form action="/contact" method="POST" class="space-y-4">
+        <input type="text" name="name" placeholder="Nama Anda" required class="w-full border-4 border-black px-3 py-2 rounded-md">
+        <input type="email" name="email" placeholder="Email Anda" required class="w-full border-4 border-black px-3 py-2 rounded-md">
+        <textarea name="message" placeholder="Pesan Anda" required class="w-full border-4 border-black px-3 py-2 rounded-md"></textarea>
+        <button type="submit" class="bg-[#003087] text-white font-extrabold border-4 border-black py-2 px-4 w-full shadow-[4px_4px_0_0_black] hover:bg-[#002170] transition">
+            Kirim Pesan
+        </button>
     </form>
 </div>
 

@@ -6,31 +6,43 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<header class="bg-white shadow p-4 mb-6">
+<header class="bg-white shadow-lg border-b-4 border-black p-4 mb-6">
     <div class="max-w-screen-xl mx-auto flex items-center justify-between">
-       <!-- Logo -->
-        <a href="/" class="flex items-center">
+        <!-- Logo -->
+        <a href="/" class="flex items-center border-4 border-black p-1 shadow-[4px_4px_0_0_black]">
             <img src="/images/logo.png" alt="Kennresearch Logo" class="w-32 h-auto md:w-29 lg:w-30">
         </a>
 
         <!-- Hamburger Button (Mobile) -->
-        <button id="menu-toggle" class="block md:hidden text-[#003087] text-3xl focus:outline-none" aria-label="Toggle Menu">
+        <button id="menu-toggle" class="block md:hidden text-[#003087] text-3xl font-extrabold focus:outline-none border-4 border-black p-1 shadow-[4px_4px_0_0_black]" aria-label="Toggle Menu">
             ☰
         </button>
 
         <!-- Navbar (Desktop) -->
         <nav class="hidden md:flex gap-4">
-            <a href="/" class="text-lg text-[#003087]">Home</a>
-            <a href="/terms" class="text-lg text-[#003087]">Ketentuan</a>
-            <a href="/contact" class="text-lg text-[#003087]">Kontak</a>
+            <a href="/" class="text-lg font-extrabold text-[#003087] border-2 border-black px-3 py-1 shadow-[2px_2px_0_0_black] hover:bg-[#003087] hover:text-white transition">
+                Home
+            </a>
+            <a href="/terms" class="text-lg font-extrabold text-[#003087] border-2 border-black px-3 py-1 shadow-[2px_2px_0_0_black] hover:bg-[#003087] hover:text-white transition">
+                Aktivasi Produk
+            </a>
+            <a href="/contact" class="text-lg font-extrabold text-[#003087] border-2 border-black px-3 py-1 shadow-[2px_2px_0_0_black] hover:bg-[#003087] hover:text-white transition">
+                Kontak
+            </a>
         </nav>
     </div>
 
     <!-- Mobile Menu -->
-    <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg p-4 mt-2">
-        <a href="/" class="block text-lg text-[#003087] mb-2">Home</a>
-        <a href="/terms" class="block text-lg text-[#003087] mb-2">Ketentuan</a>
-        <a href="/contact" class="block text-lg text-[#003087]">Kontak</a>
+    <div id="mobile-menu" class="hidden md:hidden bg-white border-4 border-black shadow-lg p-4 mt-2">
+        <a href="/" class="block text-lg font-extrabold text-[#003087] border-b-2 border-black pb-1 mb-2 hover:bg-[#003087] hover:text-white transition">
+            Home
+        </a>
+        <a href="/terms" class="block text-lg font-extrabold text-[#003087] border-b-2 border-black pb-1 mb-2 hover:bg-[#003087] hover:text-white transition">
+            Aktivasi Produk
+        </a>
+        <a href="/contact" class="block text-lg font-extrabold text-[#003087] border-b-2 border-black pb-1 hover:bg-[#003087] hover:text-white transition">
+            Kontak
+        </a>
     </div>
 </header>
 
@@ -43,4 +55,3 @@
         mobileMenu.classList.toggle("hidden");
     });
 </script>
-
